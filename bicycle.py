@@ -1,5 +1,6 @@
 ##This is the final 'model the bicycle industry' project in unit 1
 ### Create the Bicycle Class
+import random
 class Bicycle:
     
     def __init__(self, model, weight, cost):
@@ -7,16 +8,6 @@ class Bicycle:
         self.weight = weight
         self.cost = cost
         
-    def money_compare(self):
-        self.money = 0
-        self.money += self.cost * 1.2
-        return self.money
-    
-    def modelname(self):
-        self.thing = ""
-        self.thing += self.model
-        return self.thing
-      
 class Bike_Shop:
     
     def __init__(self, name, margin, inventory={}, bikecost={}):
@@ -24,40 +15,44 @@ class Bike_Shop:
         self.margin = margin + 1
         self.inventory = inventory
         self.bikecost = bikecost
+        for bike, price in self.bikecost.items():  #### moved logic into the bike shop; where pricing of bike occurs
+            self.bikecost[bike] = price * self.margin  #### updates the bikecost dictionary (shop_inventory2 in main.py) within Bike_Shop object
+                                                        #### easier than updating it manually each time we want the price of a given bike
+    def get_price(self, bike):
+        return self.bikecost[bike]
         
-    def get_price(self):
-        for bike, price in self.bikecost.items():
-            self.bikecost[bike] = price * self.margin
-        return self.bikecost
-
-   
+    def shop_profit(self, profit):
+        x = 0
+        for i in profit:
+            x += self.bikecost[i] - (self.bikecost[i] / self.margin)
+        return x    
+    
 class Customer:
-
+    
     def __init__(self, Name, budget):
         self.Name = Name
         self.budget = budget
+        self.bikes_afforded = []
     
-    def customermoney(self):
-        self.funds = 0
-        self.funds += self.budget
-        return self.funds
-    
-    def customername(self):
-        self.name = ""
-        self.name += self.Name
-        return self.name
-
-    def get_profit(self, bikepr):
-        return bikepr
+    def purchase_decision(self, bikes_afforded):
+        self.purchase = "" ### empty string to which we add the single random bike we pick in the next line
+        self.purchase += random.choice(self.bikes_afforded) #picks a random bike among a list of bikes each customer can afford
+        return self.purchase
         
-    def shop_pr(self):
-        return self
+    def bike_purchased(self):
+        return self.purchase
 
-
-
-
-
-
-
-
+class Wheel:
+    
+    def __init__(self, name, weight, cost):
+        self.name = name
+        self.weight = weight
+        self.cost = cost
+        
+class Frame:
+    
+    def __init__(self, material, weight, cost):
+        self.material = material
+        self.weight = weight
+        self.cost = cost
 
