@@ -1,43 +1,35 @@
+### basic testing script before adding wheel and frame classes
 from bicycle import *
+import random
+
 customer1 = Customer("David", 1000)
 customer2 = Customer("Will", 500) #customers and his/her's given budget
 customer3 = Customer("Wayne", 200)
 cus_list = [customer1, customer2, customer3]
 
-wheel_set1 = Wheel("Track Fixie", 5, 50)  # model name, wheel set (2 wheels) weight lbs, cost to produce
-wheel_set2 = Wheel("Ultegra", 4, 100)
-wheel_set3 = Wheel("Cosmic Elite", 2, 300)
-
-frame1 = Frame("Steel", 15, 50)  # frame material, weight lbs., cost to produce
-frame2 = Frame("Aluminum", 12, 100)
-frame3 = Frame("Carbon", 10, 300)
-
-bike1 = Bicycle("Trek", "Top Fuel", wheel_set1.weight + frame1.weight, wheel_set1.cost + frame1.cost)   ### {manufacturer, model_name, weight lbs, $ production cost}
-bike2 = Bicycle("Trek", "Procaliber", wheel_set2.weight + frame2.weight, wheel_set2.cost + frame2.cost)   ### bikeweight = frameweight + wheelsetweight
-bike3 = Bicycle("Trek", "Super Fly", wheel_set3.weight + frame3.weight, wheel_set3.cost + frame3.cost)  ### bikecost = framecost + wheelsetcost
-bike4 = Bicycle("Specialized", "Stump Jumper", 12, 800)
-bike5 = Bicycle("Specialized", "Allez", 10, 1000)
-bike6 = Bicycle("Specialized", "Roubaix", 8, 1500)
+bike1 = Bicycle("Stump Jumper", 20, 100)   ### {model_name, weight lbs, $ production cost}
+bike2 = Bicycle("Rock Hopper", 16, 300)
+bike3 = Bicycle("Hard Rock", 14, 700)
+bike4 = Bicycle("Epic", 12, 1250)
+bike5 = Bicycle("Allez", 10, 1500)
+bike6 = Bicycle("Roubaix", 8, 2000)
 bike_list = [bike1, bike2, bike3, bike4, bike5, bike6]
 
-Maker1 = Manufacturer("Trek", 0.1, [bike1, bike2, bike3])
-Maker2 = Manufacturer("Specialized", 0.1, [bike4, bike5, bike6])
-
 shop_inventory1 = {
-bike1.model: 5,   ### bike.i.d. = {model_name, stock count}
-bike2.model: 5,
-bike3.model: 5,
-bike4.model: 3,
-bike5.model: 2,
-bike6.model: 1
+"Stump Jumper": 5,   ### bike.i.d. = {model_name, stock count}
+"Rock Hopper": 5,
+"Hard Rock": 5,
+"Epic": 3,
+"Allez": 2,
+"Roubaix": 1
 } # stock count
 shop_inventory2 = {
-bike1.model: bike1.cost * Maker1.sell_margin,   ### bike.i.d. = {model_name, cost}
-bike2.model: bike2.cost * Maker1.sell_margin,
-bike3.model: bike3.cost * Maker1.sell_margin,
-bike4.model: bike4.cost * Maker2.sell_margin,
-bike5.model: bike5.cost * Maker2.sell_margin,
-bike6.model: bike6.cost * Maker2.sell_margin
+"Stump Jumper": 100,   ### bike.i.d. = {model_name, cost}
+"Rock Hopper": 300,
+"Hard Rock": 700,
+"Epic": 1250,
+"Allez": 1500,
+"Roubaix": 2000
 } # prices
 
 '''for bike, stock in shop_inventory1.items():
@@ -68,4 +60,4 @@ for person in cus_list:   ### loops through our list of customers initialized ab
 
 print(shop_inventory1) ### Printing updated inventory list after customers make his/her purchases
 print("The total profit from sales at Dave's Bike Depot is {} dollars".format(Shop1.shop_profit(profit)))
-print(profit)
+#print(profit)

@@ -3,7 +3,8 @@
 import random
 class Bicycle:
     
-    def __init__(self, model, weight, cost):
+    def __init__(self, manufacturer, model, weight, cost):
+        self.manufacturer = manufacturer
         self.model = model
         self.weight = weight
         self.cost = cost
@@ -56,3 +57,15 @@ class Frame:
         self.weight = weight
         self.cost = cost
 
+class Manufacturer:
+    
+    def __init__(self, name, sell_margin, models=[]):
+        self.name = name
+        self.models = models
+        self.sell_margin = sell_margin + 1
+        
+            
+        
+    #def wholesale_price(self, bike):
+        
+            
